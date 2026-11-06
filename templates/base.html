@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block titulo %}Mi Música Rock{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="barra">
+        <a class="logo" href="{{ url_for('index') }}">&gt; mi_musica_rock<span class="cursor">_</span></a>
+        <nav>
+            <a href="{{ url_for('index') }}">Registrar</a>
+            <a href="{{ url_for('canciones') }}">Mis canciones</a>
+        </nav>
+    </header>
+
+    <main class="contenedor{% block ancho %}{% endblock %}">
+        {% with mensajes = get_flashed_messages(with_categories=true) %}
+            {% if mensajes %}
+                <div class="mensajes">
+                    {% for categoria, mensaje in mensajes %}
+                        <p class="mensaje {{ categoria }}">{{ mensaje }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% block contenido %}{% endblock %}
+    </main>
+
+    <footer class="pie">Taller SENA · Análisis y Desarrollo de Software · Flask + MySQL · By Cesar_Villacob</footer>
+</body>
+</html>

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block titulo %}Registrar canción · Mi Música Rock{% endblock %}
+
+{% block contenido %}
+<section class="tarjeta">
+    <h1>Registrar una canción de rock</h1>
+    <p class="sub">Los campos con <span class="req">*</span> son obligatorios.</p>
+
+    <form action="{{ url_for('guardar') }}" method="post" novalidate>
+        <label for="nombre_cancion">Nombre de la canción <span class="req">*</span></label>
+        <input type="text" id="nombre_cancion" name="nombre_cancion" maxlength="100"
+               value="{{ datos.get('nombre_cancion', '') }}" placeholder="Ej: Smells Like Teen Spirit" required>
+
+        <label for="artista">Artista o banda <span class="req">*</span></label>
+        <input type="text" id="artista" name="artista" maxlength="100"
+               value="{{ datos.get('artista', '') }}" placeholder="Ej: Nirvana" required>
+
+        <div class="fila">
+            <div>
+                <label for="genero">Género <span class="req">*</span></label>
+                <input type="text" id="genero" name="genero" maxlength="50" list="lista-generos"
+                       value="{{ datos.get('genero', '') }}" placeholder="Ej: Grunge" required>
+                <datalist id="lista-generos">
+                    {% for g in generos %}<option value="{{ g }}">{% endfor %}
+                </datalist>
+            </div>
+            <div>
+                <label for="fecha_registro">Fecha en que la escuché <span class="req">*</span></label>
+                <input type="date" id="fecha_registro" name="fecha_registro"
+                       value="{{ datos.get('fecha_registro', '') }}" required>
+            </div>
+        </div>
+
+        <label for="observacion">Observación</label>
+        <textarea id="observacion" name="observacion" maxlength="255" rows="3"
+                  placeholder="¿Qué te hace sentir? ¿Con quién la escuchaste?">{{ datos.get('observacion', '') }}</textarea>
+
+        <button type="submit">Guardar canción</button>
+    </form>
+</section>
+{% endblock %}

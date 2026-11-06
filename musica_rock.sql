@@ -1,0 +1,1 @@
+SELECT * FROM musica_rock.canciones;
