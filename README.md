@@ -43,7 +43,7 @@ musica_rock/
 
 ## Prueba sugerida (mínimo 5 canciones)
 
-Registra desde el formulario al menos cinco canciones; cambia estas por las de tu época:
+formulario con cinco canciones:
 
 | Canción | Artista | Género |
 |---|---|---|
